@@ -47,6 +47,7 @@ SELECT
 cr.id, 
 cr.crime_type,
 STR_TO_DATE(cr.crime_date, '%m/%d/%Y') as crime_date,
+HOUR(STR_TO_DATE(cr.crime_date, '%m/%d/%Y %H:%i')) AS crime_hour,
 cr.crime_description,
 cr.crime_location,
 cr.city_block,
@@ -70,11 +71,7 @@ LIMIT 2
 ````
 **Results:**
 
-| id     | crime_type        | crime_date  | crime_description        | crime_location                        | city_block | community_name | population | area_size | density  | arrest | domestic | temp_high | temp_low | precipitation |
-|--------|------------------ |------------ |------------------------- |---------------------------------------|------------|----------------|------------|-----------|----------|--------|----------|-----------|----------|----------------|
-| 168267 | assault           | 2021-12-16  | aggravated - handgun     | alley                                 | 47th st    | brighton park  | 45053      | 2.72      | 16563.6  | FALSE  | FALSE    | 66        | 32       |                |
-| 168269 | criminal damage   | 2021-12-16  | to vehicle               | parking lot / garage (non residential) | spaulding ave | avondale      | 36257      | 1.98      | 18311.62 | FALSE  | FALSE    | 66        | 32       |                |
-
-
-
-
+| id     | crime_type        | crime_date | crime_hour | crime_description        | crime_location                        | city_block       | community_name | population | area_size | density   | arrest | domestic | temp_high | temp_low | precipitation |
+|--------|-------------------|------------|------------|--------------------------|---------------------------------------|------------------|----------------|------------|-----------|-----------|--------|----------|-----------|----------|----------------|
+| 168267 | assault           | 2021-12-16 | 12         | aggravated - handgun     | alley                                 | 47th st          | brighton park  | 45053      | 2.72      | 16563.6   | FALSE  | FALSE    | 66        | 32       |                |
+| 168269 | criminal damage   | 2021-12-16 | 11         | to vehicle               | parking lot / garage (non residential) | spaulding ave    | avondale       | 36257      | 1.98      | 18311.62  | FALSE  | FALSE    | 66        | 32       |                |
