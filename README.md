@@ -75,3 +75,41 @@ LIMIT 2
 |--------|-------------------|------------|------------|--------------------------|---------------------------------------|------------------|----------------|------------|-----------|-----------|--------|----------|-----------|----------|----------------|
 | 168267 | assault           | 2021-12-16 | 12         | aggravated - handgun     | alley                                 | 47th st          | brighton park  | 45053      | 2.72      | 16563.6   | FALSE  | FALSE    | 66        | 32       |                |
 | 168269 | criminal damage   | 2021-12-16 | 11         | to vehicle               | parking lot / garage (non residential) | spaulding ave    | avondale       | 36257      | 1.98      | 18311.62  | FALSE  | FALSE    | 66        | 32       |                |
+
+
+#### Which communities had the most crime?
+
+````sql
+SELECT community_name,population, COUNT(*) as total_crimes
+FROM chicago_crimes
+GROUP BY community_name,population
+ORDER BY total_crimes DESC
+LIMIT 5
+````
+**Results:**
+
+| community_name    | population | total_crimes |
+|-------------------|------------|--------------|
+| austin            | 96557      | 11341        |
+| near north side   | 105481     | 8126         |
+| south shore       | 53971      | 7272         |
+| near west side    | 67881      | 6743         |
+| north lawndale    | 34794      | 6161         |
+
+#### Crime counts reflect the raw number of recorded offenses. But when assessing crime risk across geographies, it is important to consider crime rates as opposed to crime counts.
+
+````sql
+SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
+FROM chicago_crimes
+GROUP BY community_name,population
+ORDER BY COUNT(*)*1000/population desc
+````
+**Results:**
+| community_name       | population | crime_rate |
+|----------------------|------------|------------|
+| west garfield park   | 17433      | 232.7769   |
+| fuller park          | 2567       | 210.7519   |
+| englewood            | 24369      | 189.8724   |
+| east garfield park   | 19992      | 177.4710   |
+| north lawndale       | 34794      | 177.0708   |
+
