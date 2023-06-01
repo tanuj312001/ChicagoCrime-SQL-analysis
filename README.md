@@ -113,3 +113,29 @@ ORDER BY COUNT(*)*1000/population desc
 | east garfield park   | 19992      | 177.4710   |
 | north lawndale       | 34794      | 177.0708   |
 
+#### What is the average offenses commited per day across these neighbourhoods?
+````sql
+with cte as (
+SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
+FROM chicago_crimes
+GROUP BY community_name,population
+ORDER BY COUNT(*)*1000/population desc
+LIMIT 3 
+)
+SELECT community_name, AVG(total_crimes) AS average_crimes
+FROM (
+  SELECT community_name, crime_date, COUNT(*) as total_crimes
+  FROM chicago_crimes
+  WHERE community_name in (
+  SELECT community_name FROM cte )
+  GROUP BY community_name, crime_date
+) AS subquery
+GROUP BY community_name
+````
+**Results:**
+
+| community_name       | average_crimes |
+|----------------------|----------------|
+| englewood            | 12.8172        |
+| west garfield park   | 11.2410        |
+| fuller park          | 1.9673         |
