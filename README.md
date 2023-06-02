@@ -77,7 +77,7 @@ LIMIT 2
 | 168269 | criminal damage   | 2021-12-16 | 11         | to vehicle               | parking lot / garage (non residential) | spaulding ave    | avondale       | 36257      | 1.98      | 18311.62  | FALSE  | FALSE    | 66        | 32       |                |
 
 
-#### Which communities had the most crime?
+### 3. Which communities had the most crime?
 
 ````sql
 SELECT community_name,population, COUNT(*) as total_crimes
@@ -96,7 +96,7 @@ LIMIT 5
 | near west side    | 67881      | 6743         |
 | north lawndale    | 34794      | 6161         |
 
-#### Crime counts reflect the raw number of recorded offenses. But when assessing crime risk across geographies, it is important to consider crime rates as opposed to crime counts.
+### 4. Crime counts reflect the raw number of recorded offenses. But when assessing crime risk across geographies, it is important to consider crime rates as opposed to crime counts.
 
 ````sql
 SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
@@ -113,7 +113,7 @@ ORDER BY COUNT(*)*1000/population desc
 | east garfield park   | 19992      | 177.4710   |
 | north lawndale       | 34794      | 177.0708   |
 
-#### What is the average offenses commited  across these neighbourhoods?
+### 5. What is the average offenses commited  across these neighbourhoods?
 ````sql
 with cte as (
 SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
@@ -140,7 +140,7 @@ GROUP BY community_name
 | west garfield park   | 11.2410        |
 | fuller park          | 1.9673         |
 
-### Arrest analysis
+### 6. Arrest analysis
 
 **Results:**
 | Arrest | Total Crimes | Arrest Percentage |
