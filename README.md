@@ -142,9 +142,48 @@ GROUP BY community_name
 
 ### 5. Arrest analysis
 
+````sql
+SELECT arrest, COUNT(*) AS total_crimes, 
+       COUNT(*) / SUM(COUNT(*)) OVER() * 100 AS arrest_percentage
+FROM chicago_crimes
+GROUP BY arrest;
+````
+
 **Results:**
 | Arrest | Total Crimes | Arrest Percentage |
 |--------|--------------|------------------|
 | FALSE  | 178,550      | 88.1572%         |
 | TRUE   | 23,986       | 11.8428%         |
+
+
+### 6. Finding out the arrest percentage for each crime type.
+
+````sql
+SELECT crime_type, 
+       COUNT(*) AS total_crimes,
+       SUM(CASE WHEN arrest = 'TRUE' THEN 1 ELSE 0 END) AS total_arrests,
+       (SUM(CASE WHEN arrest = 'TRUE' THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS arrest_percentage
+FROM chicago_crimes
+GROUP BY crime_type
+````
+**Results:**
+
+| Crime Type                      | Total Crimes | Total Arrests | Arrest Percentage |
+|--------------------------------|--------------|---------------|------------------|
+| Assault                        | 20,086       | 1,767         | 8.7972           |
+| Criminal Damage                | 24,716       | 861           | 3.4836           |
+| Theft                          | 39,758       | 1,491         | 3.7502           |
+| Motor Vehicle Theft            | 10,410       | 333           | 3.1988           |
+| Other Offense                   | 13,588       | 1,439         | 10.5902          |
+| Robbery                        | 7,813        | 376           | 4.8125           |
+| Battery                        | 39,988       | 5,462         | 13.6591          |
+| Deceptive Practice              | 15,710       | 176           | 1.1203           |
+| Homicide                       | 803          | 182           | 22.6650          |
+| Narcotics                      | 4,072        | 3,935         | 96.6356          |
+| Criminal Trespass               | 3,367        | 988           | 29.3436          |
+| Burglary                       | 6,546        | 231           | 3.5289           |
+| Offense Involving Children     | 1,839        | 106           | 5.7640           |
+| Weapons Violation              | 8,865        | 5,485         | 61.8725          |
+
+
 
