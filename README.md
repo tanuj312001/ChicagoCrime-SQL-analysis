@@ -279,7 +279,7 @@ WHERE ranking<=10
 
 ### 10. What was the number of reported crimes on the hottest day of the year vs the coldest?
 
-
+````sql
 with hottest as (
 SELECT temp_high, COUNT(*) AS total_crimes
 FROM chicago_crimes
@@ -310,7 +310,6 @@ FROM coldest
 #### 11. What are the top 5 least reported crime, how many arrests were made and the percentage of arrests made?
 
 ````sql
-
 SELECT crime_type, low_crimes, arrest_count,
 ROUND(arrest_count*100/low_crimes,2) as arrest_percentage
 FROM(
@@ -321,6 +320,7 @@ GROUP BY crime_type
 ORDER BY low_crimes 
 LIMIT 5
 ) as subquery 
+````
 
 **Results:**
 
