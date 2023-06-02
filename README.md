@@ -1,4 +1,4 @@
-# ChicagoCrime-SQL-analysis
+# Chicago Crime SQL analysis
 
 **Creator**: Tanuj Shankarwar
 
