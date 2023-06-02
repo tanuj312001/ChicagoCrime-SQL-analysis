@@ -119,7 +119,7 @@ with cte as (
 SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
 FROM chicago_crimes
 GROUP BY community_name,population
-ORDER BY COUNT(*)*1000/population desc
+ORDER BY crime_rate desc
 LIMIT 3 
 )
 SELECT community_name, AVG(total_crimes) AS average_crimes
