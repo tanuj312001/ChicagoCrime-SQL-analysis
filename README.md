@@ -277,3 +277,61 @@ WHERE ranking<=10
 | State St                     | 7           |
 
 
+### 10. What was the number of reported crimes on the hottest day of the year vs the coldest?
+
+
+with hottest as (
+SELECT temp_high, COUNT(*) AS total_crimes
+FROM chicago_crimes
+WHERE temp_high=(SELECT MAX(temp_high) FROM chicago_crimes)
+GROUP BY temp_high
+),
+coldest as (
+SELECT temp_high, COUNT(*) AS total_crimes
+FROM chicago_crimes
+WHERE temp_high=(SELECT MIN(temp_high) FROM chicago_crimes)
+GROUP BY temp_high
+)
+SELECT *
+FROM hottest 
+UNION 
+SELECT *
+FROM coldest
+````
+**Results:**
+
+| Temp High | Total Crimes |
+|-----------|--------------|
+| 95        | 552          |
+| 4         | 402          |
+
+### There was a 37% increase in crime on the Hottest day of the year vs Coldest day of the year.
+
+#### 11. What are the top 5 least reported crime, how many arrests were made and the percentage of arrests made?
+
+````sql
+
+SELECT crime_type, low_crimes, arrest_count,
+ROUND(arrest_count*100/low_crimes,2) as arrest_percentage
+FROM(
+SELECT crime_type, COUNT(*) AS low_crimes,
+SUM(CASE WHEN arrest='TRUE' THEN 1 ELSE 0 END) AS arrest_count
+FROM chicago_crimes
+GROUP BY crime_type
+ORDER BY low_crimes 
+LIMIT 5
+) as subquery 
+
+**Results:**
+
+| Crime Type                | Low Crimes | Arrest Count | Arrest Percentage |
+|---------------------------|------------|--------------|------------------|
+| Other Narcotic Violation  | 2          | 1            | 50.00            |
+| Public Indecency          | 4          | 4            | 100.00           |
+| Non-Criminal              | 4          | 1            | 25.00            |
+| Human Trafficking         | 12         | 0            | 0.00             |
+| Gambling                  | 13         | 11           | 84.62            |
+
+````
+
+
