@@ -113,7 +113,7 @@ ORDER BY COUNT(*)*1000/population desc
 | east garfield park   | 19992      | 177.4710   |
 | north lawndale       | 34794      | 177.0708   |
 
-#### What is the average offenses commited per day across these neighbourhoods?
+#### What is the average offenses commited  across these neighbourhoods?
 ````sql
 with cte as (
 SELECT community_name,population, COUNT(*)*1000/population as crime_rate 
@@ -139,3 +139,12 @@ GROUP BY community_name
 | englewood            | 12.8172        |
 | west garfield park   | 11.2410        |
 | fuller park          | 1.9673         |
+
+### Arrest analysis
+
+**Results:**
+| Arrest | Total Crimes | Arrest Percentage |
+|--------|--------------|------------------|
+| FALSE  | 178,550      | 88.1572%         |
+| TRUE   | 23,986       | 11.8428%         |
+
