@@ -185,5 +185,37 @@ GROUP BY crime_type
 | Offense Involving Children     | 1,839        | 106           | 5.7640           |
 | Weapons Violation              | 8,865        | 5,485         | 61.8725          |
 
+### 7. Which month has the most crimes commited and the avg temp?
 
 
+````sql
+SELECT
+	MONTHNAME(crime_date) as month,
+	COUNT(*) AS n_homicides,
+	round(avg(temp_high), 1) AS avg_high_temp
+FROM
+	chicago_crimes
+WHERE crime_type = 'homicide'
+GROUP BY
+	month
+ORDER BY
+	n_homicides DESC;
+````
+
+**Results:**
+| month     | n_homicides | avg_high_temp |
+|-----------|-------------|---------------|
+| July      | 112         | 82.6          |
+| September | 89          | 80.8          |
+| June      | 85          | 83.5          |
+| August    | 81          | 85.3          |
+| May       | 66          | 73.9          |
+| October   | 64          | 67.9          |
+| November  | 62          | 50.6          |
+| January   | 55          | 34.1          |
+| April     | 54          | 65.1          |
+| December  | 52          | 48.6          |
+| March     | 45          | 54.7          |
+| February  | 38          | 27.0          |
+
+#### The highest amount of crimes occured in the mild weather months.
