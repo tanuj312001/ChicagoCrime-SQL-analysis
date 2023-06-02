@@ -185,7 +185,7 @@ GROUP BY crime_type
 | Offense Involving Children     | 1,839        | 106           | 5.7640           |
 | Weapons Violation              | 8,865        | 5,485         | 61.8725          |
 
-### 7. Which month has the most crimes commited and the avg temp?
+### 7. What weekday were most crimes committed? Which month has the most crimes commited and the avg temp?
 
 
 ````sql
@@ -201,7 +201,6 @@ GROUP BY
 ORDER BY
 	n_homicides DESC;
 ````
-
 **Results:**
 | month     | n_homicides | avg_high_temp |
 |-----------|-------------|---------------|
@@ -219,3 +218,61 @@ ORDER BY
 | February  | 38          | 27.0          |
 
 #### The highest amount of crimes occured in the mild weather months.
+
+### 8. What weekday were most crimes committed? 
+
+````sql
+SELECT
+	DAYNAME(crime_date) as day ,
+	COUNT(*) as total_crimes
+FROM
+	chicago_crimes
+GROUP BY
+	DAYNAME(crime_date)
+ORDER BY total_crimes desc
+````
+**Results:**
+
+| Day       | Total Crimes |
+|-----------|--------------|
+| Saturday  | 29841        |
+| Friday    | 29829        |
+| Sunday    | 29569        |
+| Monday    | 29194        |
+| Wednesday | 28143        |
+| Tuesday   | 28135        |
+| Thursday  | 27825        |
+
+####  Crimes increases upto 7% during the weekends
+
+### 9. What are the top  city blocks streets that have had the most homicides including ties?
+
+````sql
+SELECT city_block, n_homicides
+FROM (
+SELECT city_block,
+COUNT(*) as n_homicides,
+RANK() OVER (ORDER BY COUNT(*) desc ) as ranking 
+FROM chicago_crimes
+WHERE crime_type='homicide'
+GROUP BY city_block
+) as subquery 
+WHERE ranking<=10
+````
+**Results:**
+| city_block | n_homicides |
+|------------|-------------|
+| ' madison st' | '14' |
+| ' 79th st' | '14' |
+| ' morgan st' | '10' |
+| ' 71st st' | '10' |
+| ' cottage grove ave' | '9' |
+| ' michigan ave' | '9' |
+| ' van buren st' | '8' |
+| ' emerald ave' | '7' |
+| ' polk st' | '7' |
+| ' cicero ave' | '7' |
+| ' pulaski rd' | '7' |
+| ' dr martin luther king jr dr' | '7' |
+| ' state st' | '7' |
+
