@@ -260,19 +260,20 @@ GROUP BY city_block
 WHERE ranking<=10
 ````
 **Results:**
-| city_block | n_homicides |
-|------------|-------------|
-| ' madison st' | '14' |
-| ' 79th st' | '14' |
-| ' morgan st' | '10' |
-| ' 71st st' | '10' |
-| ' cottage grove ave' | '9' |
-| ' michigan ave' | '9' |
-| ' van buren st' | '8' |
-| ' emerald ave' | '7' |
-| ' polk st' | '7' |
-| ' cicero ave' | '7' |
-| ' pulaski rd' | '7' |
-| ' dr martin luther king jr dr' | '7' |
-| ' state st' | '7' |
+| City Block                    | N Homicides |
+|------------------------------|-------------|
+| Madison St                   | 14          |
+| 79th St                      | 14          |
+| Morgan St                    | 10          |
+| 71st St                      | 10          |
+| Cottage Grove Ave            | 9           |
+| Michigan Ave                 | 9           |
+| Van Buren St                 | 8           |
+| Emerald Ave                  | 7           |
+| Polk St                      | 7           |
+| Cicero Ave                   | 7           |
+| Pulaski Rd                   | 7           |
+| Dr Martin Luther King Jr Dr  | 7           |
+| State St                     | 7           |
+
 
