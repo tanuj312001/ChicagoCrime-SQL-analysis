@@ -364,5 +364,33 @@ ORDER BY MONTH(crime_date)
 | December   | 14258        | -16.00         |
 
 
+#### 13. How many types of theft took place and their count?
+
+````sql
+SELECT crime_type ,crime_description,COUNT(*) as total_crimes
+FROM chicago_crimes
+WHERE crime_description LIKE '%theft%'
+GROUP BY crime_type, crime_description
+
+````
+
+**Results:**
+# crime_type, crime_description, total_crimes
+'theft', 'retail theft', '6085'
+'deceptive practice', 'theft of labor / services', '354'
+'deceptive practice', 'financial identity theft over $ 300', '2731'
+'deceptive practice', 'financial identity theft $300 and under', '5104'
+'motor vehicle theft', 'theft / recovery - automobile', '509'
+'deceptive practice', 'attempt - financial identity theft', '453'
+'theft', 'attempt theft', '236'
+'deceptive practice', 'theft of lost / mislaid property', '275'
+'theft', 'delivery container theft', '20'
+'deceptive practice', 'aggravated financial identity theft', '61'
+'deceptive practice', 'theft by lessee, motor vehicle', '211'
+'motor vehicle theft', 'theft / recovery - truck, bus, mobile home', '17'
+'motor vehicle theft', 'theft / recovery - cycle, scooter, bike with vin', '2'
+'deceptive practice', 'theft by lessee, non-motor vehicle', '9'
+
+
 
 
