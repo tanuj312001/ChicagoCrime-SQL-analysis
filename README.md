@@ -334,4 +334,35 @@ LIMIT 5
 
 ````
 
+#### 12. How many crimes were reported on a monthly basis in chronological order. What is the month to month percentage change of crimes reported?
+
+````sql
+SELECT month,total_crimes,
+ROUND(100*(total_crimes-LAG(total_crimes) OVER())/LAG(total_crimes) OVER(),2)  as month_to_month 
+FROM (
+SELECT MONTHNAME(crime_date) as month, COUNT(*) as total_crimes
+FROM chicago_crimes
+GROUP BY MONTHNAME(crime_date)
+ORDER BY MONTH(crime_date)
+) AS subquery 
+````
+**Results:**
+
+| month      | total_crimes | month_to_month |
+|------------|--------------|----------------|
+| January    | 16038        | NULL           |
+| February   | 12888        | -19.64         |
+| March      | 15742        | 22.14          |
+| April      | 15305        | -2.78          |
+| May        | 17539        | 14.60          |
+| June       | 18566        | 5.86           |
+| July       | 18966        | 2.15           |
+| August     | 18255        | -3.75          |
+| September  | 18987        | 4.01           |
+| October    | 19018        | 0.16           |
+| November   | 16974        | -10.75         |
+| December   | 14258        | -16.00         |
+
+
+
 
