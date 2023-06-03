@@ -243,11 +243,11 @@ ORDER BY total_crimes desc
 | Tuesday   | 28135        |
 | Thursday  | 27825        |
 
-####  Crimes increases upto 7% during the weekends
+####  Crimes increases upto 7% during the weekends 
 
 ### 9. What are the top  city blocks streets that have had the most homicides including ties?
 
-````sql
+
 SELECT city_block, n_homicides
 FROM (
 SELECT city_block,
@@ -258,7 +258,7 @@ WHERE crime_type='homicide'
 GROUP BY city_block
 ) as subquery 
 WHERE ranking<=10
-````
+`
 **Results:**
 | City Block                    | N Homicides |
 |------------------------------|-------------|
