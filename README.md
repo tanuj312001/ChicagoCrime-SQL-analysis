@@ -394,6 +394,42 @@ GROUP BY crime_type, crime_description
 | deceptive practice   | theft by lessee, non-motor vehicle         | 9            |
 
 
+#### 14. Most consecutive days where a homicide occured and the timeframe?
+
+````sql
+WITH get_all_dates AS (
+	SELECT DISTINCT DATE(crime_date) AS c_date
+	FROM chicago_crimes
+	WHERE crime_type = 'homicide'
+),
+get_diff AS (
+	SELECT 
+		c_date,
+		@rn := @rn + 1 AS rn,
+		DATEDIFF(c_date, @rn) AS diff
+	FROM get_all_dates, (SELECT @rn := 0) r
+),
+get_diff_count AS (
+	SELECT
+		c_date,
+		COUNT(*) OVER (PARTITION BY diff) AS diff_count
+	FROM get_diff
+	GROUP BY c_date, diff
+)
+SELECT
+	MAX(diff_count) AS most_consecutive_days,
+	CONCAT(MIN(c_date), ' to ', MAX(c_date)) AS time_frame
+FROM get_diff_count
+WHERE diff_count > 40;
+````
+
+**Results:**
+| most_consecutive_days | time_frame                |
+|----------------------|---------------------------|
+| 316                  | 2021-01-01 to 2021-12-27 |
+
+
+
 
 
 
