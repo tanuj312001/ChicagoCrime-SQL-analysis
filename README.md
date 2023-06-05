@@ -346,6 +346,7 @@ GROUP BY MONTHNAME(crime_date)
 ORDER BY MONTH(crime_date)
 ) AS subquery 
 ````
+
 **Results:**
 
 | month      | total_crimes | month_to_month |
