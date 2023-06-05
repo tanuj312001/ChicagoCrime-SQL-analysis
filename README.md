@@ -332,9 +332,10 @@ LIMIT 5
 | Human Trafficking         | 12         | 0            | 0.00             |
 | Gambling                  | 13         | 11           | 84.62            |
 
-````
+
 
 #### 12. How many crimes were reported on a monthly basis in chronological order. What is the month to month percentage change of crimes reported?
+
 
 ````sql
 SELECT month,total_crimes,
