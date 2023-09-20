@@ -2,8 +2,6 @@
 
 **Creator**: Tanuj Shankarwar
 
-**Email**: tshankarwar@ucsd.edu
-
 **Linkedin**: https://www.linkedin.com/in/tanuj-s-662785166/
 
 
