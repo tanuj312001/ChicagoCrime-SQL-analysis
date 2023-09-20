@@ -17,7 +17,7 @@ Total Reported Crimes|
 ---------------------|
 202536|
 
-* With 202,536 reported crimes, businesses operating in Chicago might need to consider security measures, especially if these numbers are increasing year over year.
+ #### -With 202,536 reported crimes, businesses operating in Chicago might need to consider security measures, especially if these numbers are increasing year over year.
 
 ### 2. What were the top 5 crime types?
 
@@ -38,9 +38,9 @@ LIMIT 5
 | assault            | 20086     |
 | deceptive practice | 15710     |
 
-#### A high frequency of thefts (39,758 reported) suggests businesses might want to invest in anti-theft systems and technologies.
-#### A significant number of assaults (20,086 reported) could indicate areas where nighttime business operations might be riskier.
-#### Recommendation: Tailor security measures based on prevalent crime types. For example, increased surveillance for areas with high theft, fraud detection systems for deceptive practices, and physical security measures for areas with high battery or assault rates.
+#### - A high frequency of thefts (39,758 reported) suggests businesses might want to invest in anti-theft systems and technologies.
+#### - A significant number of assaults (20,086 reported) could indicate areas where nighttime business operations might be riskier.
+#### - Recommendation: Tailor security measures based on prevalent crime types. For example, increased surveillance for areas with high theft, fraud detection systems for deceptive practices, and physical security measures for areas with high battery or assault rates.
 
 #### Join data from three tables crimes,weather and community
 
