@@ -17,7 +17,7 @@ Total Reported Crimes|
 ---------------------|
 202536|
 
-#### With 202,536 reported crimes, businesses operating in Chicago might need to consider security measures, especially if these numbers are increasing year over year.
+* With 202,536 reported crimes, businesses operating in Chicago might need to consider security measures, especially if these numbers are increasing year over year.
 
 ### 2. What were the top 5 crime types?
 
